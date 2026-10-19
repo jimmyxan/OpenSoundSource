@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleIdentifier</key><string>dev.opensoundsource.app</string>
+  <key>CFBundleName</key><string>OpenSoundSource</string>
+  <key>CFBundleExecutable</key><string>OpenSoundSource</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleVersion</key><string>0.1</string>
+  <key>NSBluetoothAlwaysUsageDescription</key><string>OpenSoundSource connects and disconnects your Bluetooth audio devices.</string>
+  <key>LSUIElement</key><true/>
+  <key>NSAudioCaptureUsageDescription</key><string>OpenSoundSource needs to capture app audio to change its volume.</string>
+</dict></plist>
