@@ -273,19 +273,48 @@ if CommandLine.arguments.contains("--selftest") {
     print("selftest ok"); exit(0)
 }
 
-// --snapshot <dir>: render both tabs to PNG for design review (the popover itself cannot be screen-captured)
+// --snapshot <dir>: render the popover to PNG (light and dark, both tabs) with made-up demo data, for the README.
+// The popover itself cannot be screen-captured, and demo data keeps real device names out of public screenshots.
 if let i = CommandLine.arguments.firstIndex(of: "--snapshot"), i + 1 < CommandLine.arguments.count {
     let dir = CommandLine.arguments[i + 1]
     _ = NSApplication.shared
     MainActor.assumeIsolated {
         let model = Model(), store = DeviceStore()
-        for (n, tab) in [("apps", 0), ("devices", 1)] {
-            let host = NSHostingView(rootView: ContentView(model: model, store: store, tab: tab).background(Color(nsColor: .windowBackgroundColor)))
-            host.frame = NSRect(origin: .zero, size: host.fittingSize)
-            host.layoutSubtreeIfNeeded()
-            if let rep = host.bitmapImageRepForCachingDisplay(in: host.bounds) {
-                host.cacheDisplay(in: host.bounds, to: rep)
-                try? rep.representation(using: .png, properties: [:])?.write(to: URL(fileURLWithPath: "\(dir)/\(n).png"))
+        func icon(_ path: String) -> NSImage { NSWorkspace.shared.icon(forFile: path) }
+        model.apps = [
+            AppRow(id: 1, name: "Music", icon: icon("/System/Applications/Music.app")),
+            AppRow(id: 2, name: "Safari", icon: icon("/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app")),
+            AppRow(id: 3, name: "Podcasts", icon: icon("/System/Applications/Podcasts.app")),
+            AppRow(id: 4, name: "FaceTime", icon: icon("/System/Applications/FaceTime.app")),
+        ]
+        model.gains = [2: 0.62, 3: 1.3, 4: 0]
+        let speakers = AudioDev(id: 1, uid: "a", name: "MacBook Pro Speakers", transport: kAudioDeviceTransportTypeBuiltIn)
+        let airpods = AudioDev(id: 2, uid: "b", name: "AirPods Pro", transport: kAudioDeviceTransportTypeBluetooth)
+        let mic = AudioDev(id: 4, uid: "d", name: "MacBook Pro Microphone", transport: kAudioDeviceTransportTypeBuiltIn)
+        store.outputs = [speakers, airpods]; store.defOut = 1
+        store.inputs = [mic]; store.defIn = 4
+        store.outControls = Controls(volume: 0.6, muted: false, balance: 0.5)
+        store.inControls = Controls(volume: 0.8, muted: false, balance: nil)
+        store.bluetooth = [BTRow(id: "a", name: "AirPods Pro", connected: false)]
+
+        for (mode, appearance) in [("light", NSAppearance.Name.aqua), ("dark", .darkAqua)] {
+            for (n, tab) in [("apps", 0), ("devices", 1)] {
+                let backdrop = mode == "dark" ? Color(white: 0.1) : Color(white: 0.91)
+                let panel = mode == "dark" ? Color(white: 0.16) : Color(white: 0.97)
+                let view = ContentView(model: model, store: store, tab: tab)
+                    .background(panel)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                    .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.primary.opacity(0.12), lineWidth: 1))
+                    .padding(28)
+                    .background(backdrop)
+                let host = NSHostingView(rootView: view)
+                host.appearance = NSAppearance(named: appearance)
+                host.frame = NSRect(origin: .zero, size: host.fittingSize)
+                host.layoutSubtreeIfNeeded()
+                if let rep = host.bitmapImageRepForCachingDisplay(in: host.bounds) {
+                    host.cacheDisplay(in: host.bounds, to: rep)
+                    try? rep.representation(using: .png, properties: [:])?.write(to: URL(fileURLWithPath: "\(dir)/\(n)-\(mode).png"))
+                }
             }
         }
     }

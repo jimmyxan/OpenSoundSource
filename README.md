@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/logo.png" alt="OpenSoundSource logo" width="128" height="128">
+
 # OpenSoundSource
 
 **Per-app volume and device control, from your macOS menu bar.**<br>
@@ -11,6 +13,20 @@
 [![Release](https://img.shields.io/github/v/release/jimmyxan/OpenSoundSource?color=black)](https://github.com/jimmyxan/OpenSoundSource/releases/latest)
 
 [English](#english) · [Italiano](#italiano)
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/apps-dark.png">
+  <img src="docs/apps-light.png" alt="Apps tab: per-app volume sliders" width="380">
+</picture>
+&nbsp;
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/devices-dark.png">
+  <img src="docs/devices-light.png" alt="Devices tab: output, input and Bluetooth" width="380">
+</picture>
+
+<sub>Demo data. Screenshots follow your GitHub theme (light or dark) / Dati dimostrativi. Gli screenshot seguono il tema di GitHub (chiaro o scuro).</sub>
 
 </div>
 
@@ -97,12 +113,12 @@ OpenSoundSource sits in the menu bar and lets you turn individual apps up or dow
 swift build -c release                      # build only
 make app                                    # build and create the .app bundle
 .build/debug/OpenSoundSource --selftest     # limiter check (after swift build)
-.build/release/OpenSoundSource --snapshot . # render apps.png and devices.png of the popover
+.build/release/OpenSoundSource --snapshot docs # render the README screenshots (demo data, light and dark)
 ```
 
 | File | Role |
 |---|---|
-| `Sources/OpenSoundSource/main.swift` | Per-app taps, limiter, model, app delegate |
+| `Sources/OpenSoundSource/main.swift` | Per-app taps, limiter, model, app delegate, `--snapshot` / `--selftest` |
 | `Sources/OpenSoundSource/Devices.swift` | CoreAudio devices, Bluetooth, launch at login |
 | `Sources/OpenSoundSource/Views.swift` | SwiftUI interface |
 
@@ -207,7 +223,7 @@ L'avvio al login funziona meglio con l'app in `/Applications`. Se macOS chiede u
 swift build -c release                      # solo compilazione
 make app                                    # compila e crea il bundle .app
 .build/debug/OpenSoundSource --selftest     # controllo del limitatore (dopo swift build)
-.build/release/OpenSoundSource --snapshot . # salva apps.png e devices.png del popover
+.build/release/OpenSoundSource --snapshot docs # genera gli screenshot del README (dati dimostrativi, chiaro e scuro)
 ```
 
 | File | Ruolo |

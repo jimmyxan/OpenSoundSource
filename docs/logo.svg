@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="OpenSoundSource logo">
+  <rect width="512" height="512" rx="112" fill="#151515"/>
+  <rect x="1.5" y="1.5" width="509" height="509" rx="110.5" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="3"/>
+  <!-- tracks -->
+  <g stroke-linecap="round" stroke-width="16">
+    <line x1="146" y1="112" x2="146" y2="400" stroke="#ffffff" stroke-opacity="0.14"/>
+    <line x1="256" y1="112" x2="256" y2="400" stroke="#ffffff" stroke-opacity="0.14"/>
+    <line x1="366" y1="112" x2="366" y2="400" stroke="#ffffff" stroke-opacity="0.14"/>
+    <!-- levels -->
+    <line x1="146" y1="196" x2="146" y2="400" stroke="#ffffff" stroke-opacity="0.78"/>
+    <line x1="256" y1="300" x2="256" y2="400" stroke="#ffffff" stroke-opacity="0.78"/>
+    <line x1="366" y1="236" x2="366" y2="400" stroke="#ffffff" stroke-opacity="0.78"/>
+  </g>
+  <!-- knobs -->
+  <circle cx="146" cy="196" r="34" fill="#ffffff"/>
+  <circle cx="256" cy="300" r="34" fill="#ff9f0a"/>
+  <circle cx="366" cy="236" r="34" fill="#ffffff"/>
+</svg>
