@@ -41,6 +41,12 @@ func executablePath(_ pid: pid_t) -> String? {
     return proc_pidpath(pid, &buf, UInt32(buf.count)) > 0 ? String(cString: buf) : nil
 }
 
+/// The app macOS holds responsible for a process. Safari's audio plays from com.apple.WebKit.GPU,
+/// a system XPC service outside Safari.app, whose responsible process is Safari.
+// ponytail: libsystem SPI (stable for years, used by Activity Monitor-like tools); bundle-path match is the fallback
+@_silgen_name("responsibility_get_pid_responsible_for_pid")
+func responsiblePid(_ pid: pid_t) -> pid_t
+
 func defaultOutputUID() -> String? {
     guard let dev = prop(AudioObjectID(kAudioObjectSystemObject), kAudioHardwarePropertyDefaultOutputDevice, as: AudioObjectID.self),
           let uid = prop(dev, kAudioDevicePropertyDeviceUID, as: CFString?.self).flatMap({ $0 }) else { return nil }
@@ -160,8 +166,10 @@ final class Model: ObservableObject {
         var playing: Set<pid_t> = []
         for proc in audioProcesses() where proc.pid != me {
             let path = executablePath(proc.pid) ?? ""
-            // the process is either an app itself, or a helper living inside an app bundle
+            // the process is an app itself, a process the app is responsible for (WebKit GPU), or a helper inside its bundle
+            let resp = responsiblePid(proc.pid)
             let owner = regular.first { $0.processIdentifier == proc.pid }
+                ?? regular.first { $0.processIdentifier == resp }
                 ?? regular.filter { $0.bundleURL.map { path.hasPrefix($0.path + "/") } ?? false }
                           .max { ($0.bundleURL?.path.count ?? 0) < ($1.bundleURL?.path.count ?? 0) }
             if let o = owner {
