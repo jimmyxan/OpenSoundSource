@@ -267,7 +267,10 @@ final class Delegate: NSObject, NSApplicationDelegate {
         guard let b = item.button else { return }
         if popover.isShown { popover.performClose(nil); return }
         MainActor.assumeIsolated { model.refresh(); store.refresh(bluetooth: true) }
+        // menu bar apps are not active by default: without this the first click only focuses the popover
+        NSApp.activate(ignoringOtherApps: true)
         popover.show(relativeTo: b.bounds, of: b, preferredEdge: .minY)
+        popover.contentViewController?.view.window?.makeKey()
     }
 }
 

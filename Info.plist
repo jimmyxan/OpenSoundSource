@@ -5,9 +5,10 @@
   <key>CFBundleName</key><string>OpenSoundSource</string>
   <key>CFBundleExecutable</key><string>OpenSoundSource</string>
   <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleVersion</key><string>0.1.1</string>
-  <key>CFBundleShortVersionString</key><string>0.1.1</string>
+  <key>CFBundleVersion</key><string>0.1.2</string>
+  <key>CFBundleShortVersionString</key><string>0.1.2</string>
   <key>NSBluetoothAlwaysUsageDescription</key><string>OpenSoundSource connects and disconnects your Bluetooth audio devices.</string>
+  <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>LSUIElement</key><true/>
   <key>NSAudioCaptureUsageDescription</key><string>OpenSoundSource needs to capture app audio to change its volume.</string>
 </dict></plist>

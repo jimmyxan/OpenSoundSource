@@ -58,7 +58,7 @@ OpenSoundSource sits in the menu bar and lets you turn individual apps up or dow
 
 #### Option A: download the release
 
-1. Download `OpenSoundSource-0.1.1-macos-universal.zip` from the [latest release](https://github.com/jimmyxan/OpenSoundSource/releases/latest).
+1. Download `OpenSoundSource-0.1.2-macos-universal.zip` from the [latest release](https://github.com/jimmyxan/OpenSoundSource/releases/latest).
 2. Unzip it and drag `OpenSoundSource.app` into `/Applications`.
 3. The app is ad-hoc signed and not notarized, so macOS blocks the first launch. Remove the quarantine flag once:
 
@@ -121,6 +121,7 @@ make app                                    # build and create the .app bundle
 | `Sources/OpenSoundSource/main.swift` | Per-app taps, limiter, model, app delegate, `--snapshot` / `--selftest` |
 | `Sources/OpenSoundSource/Devices.swift` | CoreAudio devices, Bluetooth, launch at login |
 | `Sources/OpenSoundSource/Views.swift` | SwiftUI interface |
+| `Resources/AppIcon.icns`, `docs/logo.svg` | App icon and logo |
 
 ### Known limitations
 
@@ -168,7 +169,7 @@ OpenSoundSource vive nella barra dei menu e ti permette di alzare o abbassare il
 
 #### Opzione A: scarica la release
 
-1. Scarica `OpenSoundSource-0.1.1-macos-universal.zip` dall'[ultima release](https://github.com/jimmyxan/OpenSoundSource/releases/latest).
+1. Scarica `OpenSoundSource-0.1.2-macos-universal.zip` dall'[ultima release](https://github.com/jimmyxan/OpenSoundSource/releases/latest).
 2. Decomprimilo e trascina `OpenSoundSource.app` in `/Applications`.
 3. L'app ha una firma ad-hoc e non è notarizzata, quindi macOS blocca il primo avvio. Rimuovi il flag di quarantena una volta sola:
 
@@ -231,6 +232,7 @@ make app                                    # compila e crea il bundle .app
 | `Sources/OpenSoundSource/main.swift` | Tap per app, limitatore, modello, delegate |
 | `Sources/OpenSoundSource/Devices.swift` | Dispositivi CoreAudio, Bluetooth, avvio al login |
 | `Sources/OpenSoundSource/Views.swift` | Interfaccia SwiftUI |
+| `Resources/AppIcon.icns`, `docs/logo.svg` | Icona dell'app e logo |
 
 ### Limiti noti
 
