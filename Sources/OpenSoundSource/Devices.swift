@@ -157,6 +157,10 @@ final class DeviceStore: ObservableObject {
 
     func setVolume(_ d: Direction, _ v: Float) {
         set(id(d), kAudioHardwareServiceDeviceProperty_VirtualMainVolume, d.scope, v)
+        // input gain at 0% is not silence on many mics (and apps like Discord re-amplify it): 0% also mutes
+        if d == .input, controls(d).muted != nil {
+            set(id(d), kAudioDevicePropertyMute, d.scope, UInt32(v == 0 ? 1 : 0))
+        }
         refresh()
     }
 

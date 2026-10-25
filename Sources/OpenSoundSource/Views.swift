@@ -279,7 +279,9 @@ struct DeviceSection: View {
         VStack(spacing: 10) {
             HStack(spacing: 10) {
                 Button { store.setMuted(dir, !(controls.muted ?? false)) } label: {
-                    Image(systemName: controls.muted == true ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                    Image(systemName: dir == .input
+                          ? (controls.muted == true ? "mic.slash.fill" : "mic.fill")
+                          : (controls.muted == true ? "speaker.slash.fill" : "speaker.wave.2.fill"))
                         .font(.system(size: 12)).frame(width: 20)
                         .foregroundStyle(controls.muted == true ? Color.primary : .secondary)
                 }
