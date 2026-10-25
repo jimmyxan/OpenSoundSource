@@ -58,7 +58,7 @@ OpenSoundSource sits in the menu bar and lets you turn individual apps up or dow
 
 #### Option A: download the release
 
-1. Download `OpenSoundSource-0.1.0-macos-universal.zip` from the [latest release](https://github.com/jimmyxan/OpenSoundSource/releases/latest).
+1. Download `OpenSoundSource-0.1.1-macos-universal.zip` from the [latest release](https://github.com/jimmyxan/OpenSoundSource/releases/latest).
 2. Unzip it and drag `OpenSoundSource.app` into `/Applications`.
 3. The app is ad-hoc signed and not notarized, so macOS blocks the first launch. Remove the quarantine flag once:
 
@@ -168,7 +168,7 @@ OpenSoundSource vive nella barra dei menu e ti permette di alzare o abbassare il
 
 #### Opzione A: scarica la release
 
-1. Scarica `OpenSoundSource-0.1.0-macos-universal.zip` dall'[ultima release](https://github.com/jimmyxan/OpenSoundSource/releases/latest).
+1. Scarica `OpenSoundSource-0.1.1-macos-universal.zip` dall'[ultima release](https://github.com/jimmyxan/OpenSoundSource/releases/latest).
 2. Decomprimilo e trascina `OpenSoundSource.app` in `/Applications`.
 3. L'app ha una firma ad-hoc e non è notarizzata, quindi macOS blocca il primo avvio. Rimuovi il flag di quarantena una volta sola:
 
